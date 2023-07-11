@@ -1,0 +1,23 @@
+<div class="container">
+  <h2 class="text-center">Office List</h2>
+  <button (click) = "registerCompany()" class="btn btn-info">Add</button>
+  <table class="table table-stripped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let company of companies">
+      <td> {{ company.id }} </td>
+      <td> {{ company.name }} </td>
+      <td>
+        <button (click) = "updateOffice(company.id)" class="btn btn-info">Update</button>
+        <button (click) = "deleteOffice(company.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

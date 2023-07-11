@@ -1,0 +1,87 @@
+<div class="container">
+  <h2 class="text-center">Update order</h2>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" [(ngModel)]="order.description" name="description">
+    </div>
+<!--
+    <div class="form-group">
+      <label for="recipient">recipient names</label>
+      <input type="text" class="form-control" id="recipient" [(ngModel)]="order.recipient" name="recipient">
+    </div>
+
+    <div class="form-group">
+      <label for="sender">sender names</label>
+      <input type="text" class="form-control" id="sender" [(ngModel)]="order.sender" name="sender">
+    </div>
+    -->
+
+    <div class="form-group">
+      <label>Status</label>
+      <select class="form-control" #teams name="statusSelect" [ngModel]="order.orderStatus"
+              (ngModelChange)="onSelectedStatus(teams.value)" [ngModelOptions]="{standalone: true}">
+        <option default>Select status</option>
+        <option>PENDING</option>
+        <option>SEND</option>
+        <option>RECEIVED</option>
+      </select>
+
+    </div>
+    <div class="form-group">
+      <label for="weight">weight</label>
+      <input type="number" class="form-control" id="weight" [(ngModel)]="order.weight" name="weight" >
+    </div>
+
+    <div class="form-group">
+      <label>Sent from office</label>
+      <select class="form-control" name="companyOfficeSelect"  [ngModel]="selectedCompanyOffice"  (ngModelChange)="onSelectedCompanyOffice($event)">
+        <option disabled>Select company office</option>
+        <option [value]="i.id" *ngFor="let i of companyOffices">{{i.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="receivedInOffice">Is send to office</label>
+      <input type="checkbox" class="form-control" id="receivedInOffice" [(ngModel)]="order.receivedInOffice" name="receivedInOffice">
+    </div>
+
+    <div class="form-group" *ngIf="!order.receivedInOffice">
+      <label for="description">Shipping address</label>
+      <input type="text" class="form-control" id="shippingAddress" [(ngModel)]="order.shippingAddress" name="shippingAddress">
+    </div>
+
+
+
+    <div class="form-group" *ngIf="order.receivedInOffice">
+      <label>Received in office</label>
+      <select class="form-control" name="companyOfficeSelectTo"  [ngModel]="selectedCompanyOfficeTo"  (ngModelChange)="onSelectedCompanyOfficeTo($event)">
+        <option disabled>Select company office</option>
+        <option [value]="i.id" *ngFor="let i of companyOffices">{{i.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group" >
+      <label>From client</label>
+      <select class="form-control" name="selectedClient"  [ngModel]="selectedClient"  (ngModelChange)="onSelectedClient($event)">
+        <option disabled>Select user</option>
+        <option [value]="user.id" *ngFor="let user of company.companyClients">({{ user.id }}) {{ user.firstName }} {{ user.lastName }}  {{ user.username }}</option>
+      </select>
+    </div>
+
+    <div class="form-group" >
+      <label>To client</label>
+      <select class="form-control" name="selectedClientTo"  [ngModel]="selectedClientTo"  (ngModelChange)="onSelectedClientTo($event)">
+        <option disabled>Select user</option>
+        <option [value]="user.id" *ngFor="let user of company.companyClients">({{ user.id }}) {{ user.firstName }} {{ user.lastName }}  {{ user.username }}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success mt-2" type="submit">Update order</button>
+
+  </form>
+</div>
+
+
+

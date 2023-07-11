@@ -1,0 +1,40 @@
+<div class="container">
+  <h2 class="text-center">Всички пратки, които са получени от даден клиент</h2>
+
+  <table class="table table-stripped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Description</th>
+      <th>Order status</th>
+      <th>Sent from office</th>
+      <th>Is send to office</th>
+      <th>Received in office/address</th>
+      <th>From client</th>
+      <th>To client</th>
+      <th>Placed Date</th>
+      <th>Received Date</th>
+      <th>Price</th>
+      <th>Weight</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td> {{ order.id }} </td>
+      <td> {{ order.description }} </td>
+      <td> {{ order.orderStatus }} </td>
+      <td> {{ order.companyOffice.name }} </td>
+      <td> {{ order.receivedInOffice }} </td>
+      <td *ngIf="order.companyOfficeTo !==null"> {{ order.companyOfficeTo.name }} </td>
+      <td *ngIf="order.companyOfficeTo ===null"> {{ order.shippingAddress }} </td>
+      <td > {{ order.senderUser.username}} </td>
+      <td> {{ order.receiverUser.username}} </td>
+      <td> {{order.placedOrderDate | date:  'dd.MM.yyyy hh:mm'}}</td>
+      <td> {{ order.receivedOrderDate | date:  'dd.MM.yyyy hh:mm'}} </td>
+      <td> {{ order.price}} BGN</td>
+      <td> {{ order.weight}} kg </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

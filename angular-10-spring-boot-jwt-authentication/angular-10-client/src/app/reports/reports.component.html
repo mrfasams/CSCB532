@@ -1,0 +1,14 @@
+<div class="container">
+  <h2 class="text-center"  *ngIf="showCourier || showEmployee" > Reports List : " {{company.name}} "</h2>
+
+  <h2 class="text-center" >  User : {{user.username}}</h2>
+  <a *ngIf="showCourier || showEmployee" href="/reports-employees" class="nav-link" routerLink="reports-employees">Всички служители в компанията</a>
+  <a *ngIf="showCourier || showEmployee"  href="/reports-clients" class="nav-link" routerLink="reports-clients">Всички клиенти на компанията</a>
+  <a *ngIf="showCourier || showEmployee" href="/reports-orders-by-employee" class="nav-link" routerLink="reports-orders-by-employee">Всички пратки, които са регистрирани от даден служител </a>
+  <a *ngIf="showCourier || showEmployee" href="/reports-orders-not-received" class="nav-link" routerLink="reports-orders-not-received">Всички пратки, които са изпратени, но не да получени</a>
+  <a *ngIf="showClient" href="/reports-orders-send-client" class="nav-link" routerLink="reports-orders-send-client"> Всички пратки, които са изпратени от даден клиент</a>
+  <a *ngIf="showClient" href="/reports-orders-received-client" class="nav-link" routerLink="reports-orders-received-client"> Всички пратки, които са получени от даден клиент</a>
+  <a *ngIf="showCourier || showEmployee" href="/reports-company-income" class="nav-link" routerLink="reports-company-income"> Всички приходи на фирмата за определен период от време</a>
+
+
+</div>

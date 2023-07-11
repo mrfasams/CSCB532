@@ -1,0 +1,81 @@
+<div class="container">
+  <h2 class="text-center" *ngIf="user.id == undefined">Register User</h2>
+  <h2 class="text-center" *ngIf="user.id !== undefined">Update User</h2>
+  <form (ngSubmit) = "onSubmit()"  >
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">first name</label>
+      <input type="text" class="form-control" id="firstName" [(ngModel)]="user.firstName" name="firstName">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name name</label>
+      <input type="text" class="form-control" id="lastName" [(ngModel)]="user.lastName" name="lastName">
+    </div>
+
+    <div class="form-group">
+      <label>Role</label>
+      <select class="form-control" name="roleSelect"  [ngModel]="selectedRole"  (ngModelChange)="onSelected($event)">
+        <option disabled>Select role</option>
+        <option [value]="i.id" *ngFor="let i of roles">{{i.name}}</option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" [(ngModel)]="user.email" name="email">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password">
+    </div>
+
+    <div class="form-group" *ngIf="!isClient">
+      <label>Company</label>
+      <select class="form-control" name="companySelect"  [ngModel]="selectedCompany"  (ngModelChange)="onSelectedCompany($event)">
+        <option disabled>Select company</option>
+        <option [value]="i.id" *ngFor="let i of companies">{{i.name}}</option>
+      </select>
+
+    </div>
+
+    <div class="form-group" *ngIf="!isClient">
+      <label>Company office</label>
+      <select class="form-control" name="companyOfficeSelect"  [ngModel]="selectedCompanyOffice"  (ngModelChange)="onSelectedCompanyOffice($event)">
+        <option disabled>Select company office</option>
+        <option [value]="i.id" *ngFor="let i of companyOffices">{{i.name}}</option>
+      </select>
+
+    </div>
+
+
+   <!-- <div class="form-group"  *ngIf="isClient">
+      <label for="website">companies:</label>
+      <div *ngFor="let web of companies">
+        <label>
+          <input type="checkbox" id="website" [(ngModel)]="web.isChecked" name="website" (ngModelChange)="onCheckboxChange($event,web.id)">
+          {{web.name}}
+        </label>
+      </div>
+    </div>-->
+    <div class="form-group"  *ngIf="isClient">
+      <div *ngFor="let item of companies">
+      <input type="checkbox" [(ngModel)]="item.checked" (ngModelChange)="onCheckboxChange($event,item.id)" [ngModelOptions]="{standalone: true}"
+             name ="companyforclient"
+             [checked]="((item.checked) ? true : false)"
+      >{{item.name}}
+      </div>
+    </div>
+
+    <button class="btn btn-success mt-2" type="submit">Save</button>
+
+  </form>
+</div>
+
+
+

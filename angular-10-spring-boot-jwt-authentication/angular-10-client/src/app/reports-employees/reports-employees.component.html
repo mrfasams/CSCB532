@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="text-center">Report company <b>employees</b> list " {{company.name}}"</h2>
+
+
+  <p></p>
+
+
+  <table class="table table-stripped">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <th>Role</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of companyOffice.officeEmployee">
+      <td> {{ user.id }} </td>
+      <td> {{ user.firstName }} </td>
+      <td> {{ user.lastName }} </td>
+      <td> {{ user.username }} </td>
+      <td> {{ user.roles[0].name }} </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
